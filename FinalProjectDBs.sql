@@ -125,6 +125,13 @@ CREATE TABLE [Cart] (
 )
 GO
 
+CREATE TABLE [Cart_ProductInstance] (
+    [Cart_productName] varchar(50),
+    [ProductInstance_cardID] varchar(10),
+    PRIMARY KEY ([Cart_productName], [ProductInstance_cardID])
+)
+GO
+
 ALTER TABLE [Product] ADD FOREIGN KEY ([genre]) REFERENCES [Genre] ([type])
 GO
 
@@ -134,12 +141,7 @@ GO
 ALTER TABLE [ProductInstance] ADD FOREIGN KEY ([name]) REFERENCES [Product] ([prodName])
 GO
 
-CREATE TABLE [Cart_ProductInstance] (
-  [Cart_productName] varchar(50),
-  [ProductInstance_cardID] varchar(10),
-  PRIMARY KEY ([Cart_productName], [ProductInstance_cardID])
-);
-GO
+
 
 ALTER TABLE [Cart_ProductInstance] ADD FOREIGN KEY ([Cart_productName]) REFERENCES [Cart] ([productName]);
 GO
