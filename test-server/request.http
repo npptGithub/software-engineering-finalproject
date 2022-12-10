@@ -1,0 +1,13 @@
+POST http://localhost:5000/api/auth/register
+Content-Type: application/json
+
+{
+    "username": "sceddd",
+    "password": "12345",
+    "fullName": "Ho Vinh Tuong",
+    "phoneNumber": "0911485802",
+    "email": "gavclchamcom@gmail.com",
+    "role": "Nhan vien quen",
+    "DOB" : "02-10-2002",
+    "stat": "AVAILABLE"
+}
