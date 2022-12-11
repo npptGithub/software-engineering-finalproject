@@ -1,7 +1,7 @@
 CREATE TABLE [Accountant] (
-  [id] varchar(10),
+  [id] varchar(10) PRIMARY KEY,
   [name] varchar(50),
-  [numPhone] varchar(10) PRIMARY KEY,
+  [numPhone] varchar(10),
   [email] varchar(50),
   [age] int,
   [address] varchar(50),
@@ -9,19 +9,8 @@ CREATE TABLE [Accountant] (
 )
 GO
 
-CREATE TABLE [Agency] (
-  [id] varchar(10),
-  [name] varchar(50),
-  [numPhone] varchar(10) PRIMARY KEY,
-  [email] varchar(50),
-  [age] int,
-  [address] varchar(50),
-  [orderID] varchar(10)
-)
-GO
-
 CREATE TABLE [LoginAccount] (
-  [id] varchar(10),
+  [id] varchar(10) PRIMARY KEY,
   [userName] varchar(20),
   [password] varchar(8)
 )
@@ -37,19 +26,17 @@ CREATE TABLE [Address] (
 GO
 
 CREATE TABLE [ReceiveNote] (
-  [id] varchar(10),
+  [id] varchar(10) PRIMARY KEY,
   [creator] varchar(50),
   [creatDay] varchar(8),
-  [type] varchar(20),
   [productList] varchar(10)
 )
 GO
 
 CREATE TABLE [DeliveryNote] (
-  [id] varchar(10),
+  [id] varchar(10) PRIMARY KEY,
   [creator] varchar(50),
   [creatDay] varchar(8),
-  [type] varchar(20),
   [productList] varchar(10),
   [deliverStatus] varchar(10),
   [payStatus] varchar(10)
@@ -57,25 +44,27 @@ CREATE TABLE [DeliveryNote] (
 GO
 
 CREATE TABLE [ProductInstance] (
-  [name] varchar(50) PRIMARY KEY,
+  [id] varchar(10) PRIMARY KEY,
+  [name] varchar(50),
   [price] float,
   [quantity] int,
-  [totalPrice] double,
+  [totalPrice] float,
   [cardID] varchar(10)
 )
 GO
 
 CREATE TABLE [ListOfProduct] (
-  [ID] varchar(10),
+  [ID] varchar(10) PRIMARY KEY,
   [productName] varchar(50),
-  [quantity] int
+  [quantity] int,
+  [totalPrice] float
 )
 GO
 
 CREATE TABLE [Product] (
   [id] varchar(10) PRIMARY KEY,
   [supplierID] varchar(10),
-  [prodName] varchar(50),
+  [prodID] varchar(50),
   [price] float,
   [genre] varchar(20)
 )
@@ -92,7 +81,7 @@ CREATE TABLE [Supplier] (
 )
 GO
 
-CREATE TABLE [Consumer] (
+CREATE TABLE [Customer] (
   [id] varchar(10) PRIMARY KEY,
   [name] varchar(50),
   [numPhone] varchar(10),
@@ -115,7 +104,7 @@ GO
 CREATE TABLE [Cart] (
   [id] varchar(10) PRIMARY KEY,
   [numberOfItem] int,
-  [totalPrice] double,
+  [totalPrice] float,
   [productName] varchar(50)
 )
 GO
@@ -126,16 +115,16 @@ GO
 ALTER TABLE [Product] ADD FOREIGN KEY ([supplierID]) REFERENCES [Supplier] ([id])
 GO
 
-ALTER TABLE [ProductInstance] ADD FOREIGN KEY ([name]) REFERENCES [Product] ([prodName])
+ALTER TABLE [ProductInstance] ADD FOREIGN KEY ([id]) REFERENCES [Product] ([prodID])
 GO
 
-ALTER TABLE [Consumer] ADD FOREIGN KEY ([address]) REFERENCES [Address] ([id])
+ALTER TABLE [Customer] ADD FOREIGN KEY ([address]) REFERENCES [Address] ([id])
 GO
 
 ALTER TABLE [Cart] ADD FOREIGN KEY ([id]) REFERENCES [Order] ([cardID])
 GO
 
-ALTER TABLE [Order] ADD FOREIGN KEY ([id]) REFERENCES [Consumer] ([orderID])
+ALTER TABLE [Order] ADD FOREIGN KEY ([id]) REFERENCES [Customer] ([orderID])
 GO
 
 ALTER TABLE [Accountant] ADD FOREIGN KEY ([address]) REFERENCES [Address] ([id])
@@ -144,7 +133,7 @@ GO
 ALTER TABLE [Accountant] ADD FOREIGN KEY ([id]) REFERENCES [LoginAccount] ([id])
 GO
 
-ALTER TABLE [ListOfProduct] ADD FOREIGN KEY ([productName]) REFERENCES [ProductInstance] ([name])
+ALTER TABLE [ListOfProduct] ADD FOREIGN KEY ([productName]) REFERENCES [ProductInstance] ([id])
 GO
 
 ALTER TABLE [ListOfProduct] ADD FOREIGN KEY ([ID]) REFERENCES [ReceiveNote] ([productList])
@@ -153,28 +142,11 @@ GO
 ALTER TABLE [ListOfProduct] ADD FOREIGN KEY ([ID]) REFERENCES [DeliveryNote] ([productList])
 GO
 
-ALTER TABLE [Agency] ADD FOREIGN KEY ([address]) REFERENCES [Address] ([id])
-GO
-
-ALTER TABLE [Order] ADD FOREIGN KEY ([id]) REFERENCES [Agency] ([orderID])
-GO
-
 ALTER TABLE [ReceiveNote] ADD FOREIGN KEY ([id]) REFERENCES [Accountant] ([noteID])
 GO
 
 ALTER TABLE [DeliveryNote] ADD FOREIGN KEY ([id]) REFERENCES [Accountant] ([noteID])
 GO
 
-CREATE TABLE [ProductInstance_Cart] (
-  [ProductInstance_cardID] varchar(10),
-  [Cart_id] varchar(10),
-  PRIMARY KEY ([ProductInstance_cardID], [Cart_id])
-);
+ALTER TABLE [ProductInstance] ADD FOREIGN KEY ([cardID]) REFERENCES [Cart] ([id])
 GO
-
-ALTER TABLE [ProductInstance_Cart] ADD FOREIGN KEY ([ProductInstance_cardID]) REFERENCES [ProductInstance] ([cardID]);
-GO
-
-ALTER TABLE [ProductInstance_Cart] ADD FOREIGN KEY ([Cart_id]) REFERENCES [Cart] ([id]);
-GO
-
