@@ -16,8 +16,7 @@ CREATE TABLE [Agency] (
   [email] varchar(50),
   [age] int,
   [address] varchar(50),
-  [orderID] varchar(10),
-  [accountantID] varchar(10)
+  [orderID] varchar(10)
 )
 GO
 
@@ -42,7 +41,7 @@ CREATE TABLE [ReceiveNote] (
   [creator] varchar(50),
   [creatDay] varchar(8),
   [type] varchar(20),
-  [productList] varchar(20)
+  [productList] varchar(10)
 )
 GO
 
@@ -51,7 +50,7 @@ CREATE TABLE [DeliveryNote] (
   [creator] varchar(50),
   [creatDay] varchar(8),
   [type] varchar(20),
-  [productList] varchar(20),
+  [productList] varchar(10),
   [deliverStatus] varchar(10),
   [payStatus] varchar(10)
 )
@@ -83,7 +82,7 @@ CREATE TABLE [Product] (
 GO
 
 CREATE TABLE [Genre] (
-  [type] nvarchar(255) PRIMARY KEY
+  [type] varchar(20) PRIMARY KEY
 )
 GO
 
@@ -94,9 +93,9 @@ CREATE TABLE [Supplier] (
 GO
 
 CREATE TABLE [Consumer] (
-  [id] varchar(10),
+  [id] varchar(10) PRIMARY KEY,
   [name] varchar(50),
-  [numPhone] varchar(10) PRIMARY KEY,
+  [numPhone] varchar(10),
   [email] varchar(50),
   [age] int,
   [address] varchar(50),
@@ -129,20 +128,6 @@ GO
 
 ALTER TABLE [ProductInstance] ADD FOREIGN KEY ([name]) REFERENCES [Product] ([prodName])
 GO
-
-CREATE TABLE [Cart_ProductInstance] (
-  [Cart_productName] varchar(50),
-  [ProductInstance_cardID] varchar(10),
-  PRIMARY KEY ([Cart_productName], [ProductInstance_cardID])
-);
-GO
-
-ALTER TABLE [Cart_ProductInstance] ADD FOREIGN KEY ([Cart_productName]) REFERENCES [Cart] ([productName]);
-GO
-
-ALTER TABLE [Cart_ProductInstance] ADD FOREIGN KEY ([ProductInstance_cardID]) REFERENCES [ProductInstance] ([cardID]);
-GO
-
 
 ALTER TABLE [Consumer] ADD FOREIGN KEY ([address]) REFERENCES [Address] ([id])
 GO
@@ -179,3 +164,17 @@ GO
 
 ALTER TABLE [DeliveryNote] ADD FOREIGN KEY ([id]) REFERENCES [Accountant] ([noteID])
 GO
+
+CREATE TABLE [ProductInstance_Cart] (
+  [ProductInstance_cardID] varchar(10),
+  [Cart_id] varchar(10),
+  PRIMARY KEY ([ProductInstance_cardID], [Cart_id])
+);
+GO
+
+ALTER TABLE [ProductInstance_Cart] ADD FOREIGN KEY ([ProductInstance_cardID]) REFERENCES [ProductInstance] ([cardID]);
+GO
+
+ALTER TABLE [ProductInstance_Cart] ADD FOREIGN KEY ([Cart_id]) REFERENCES [Cart] ([id]);
+GO
+
