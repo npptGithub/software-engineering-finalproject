@@ -14,9 +14,9 @@ public class Customer
 		this.phoneNumber = phoneNumber;
 		this.email = email;
 	} 
-	public string Address
+	public Address adr
 	{
-		get { return  address};
-		set { address = value};
+		get { return this.address;}
+		set { address = value;}
 	}
 }

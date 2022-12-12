@@ -1,6 +1,5 @@
 D:\HK4\nodejs\software\abc\software-engineering-finalproject\FinalProject\FinalProject\obj\Debug\FinalProject.csproj.AssemblyReference.cache
 D:\HK4\nodejs\software\abc\software-engineering-finalproject\FinalProject\FinalProject\obj\Debug\FinalProject.csproj.SuggestedBindingRedirects.cache
-D:\HK4\nodejs\software\abc\software-engineering-finalproject\FinalProject\FinalProject\obj\Debug\FinalProject.Form1.resources
 D:\HK4\nodejs\software\abc\software-engineering-finalproject\FinalProject\FinalProject\obj\Debug\FinalProject.Properties.Resources.resources
 D:\HK4\nodejs\software\abc\software-engineering-finalproject\FinalProject\FinalProject\obj\Debug\FinalProject.csproj.GenerateResource.cache
 D:\HK4\nodejs\software\abc\software-engineering-finalproject\FinalProject\FinalProject\obj\Debug\FinalProject.csproj.CoreCompileInputs.cache
@@ -9,3 +8,6 @@ D:\HK4\nodejs\software\abc\software-engineering-finalproject\FinalProject\FinalP
 D:\HK4\nodejs\software\abc\software-engineering-finalproject\FinalProject\FinalProject\bin\Debug\FinalProject.pdb
 D:\HK4\nodejs\software\abc\software-engineering-finalproject\FinalProject\FinalProject\obj\Debug\FinalProject.exe
 D:\HK4\nodejs\software\abc\software-engineering-finalproject\FinalProject\FinalProject\obj\Debug\FinalProject.pdb
+D:\HK4\nodejs\software\abc\software-engineering-finalproject\FinalProject\FinalProject\obj\Debug\FinalProject.Main.resources
+D:\HK4\nodejs\software\abc\software-engineering-finalproject\FinalProject\FinalProject\obj\Debug\FinalProject.LoginPage.resources
+D:\HK4\nodejs\software\abc\software-engineering-finalproject\FinalProject\FinalProject\obj\Debug\FinalProject.NewOrder.resources

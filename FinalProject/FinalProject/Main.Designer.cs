@@ -29,32 +29,23 @@
         private void InitializeComponent()
         {
             this.newOrderBut = new System.Windows.Forms.Button();
-            this.allOrder = new System.Windows.Forms.Button();
             this.historyButt = new System.Windows.Forms.Button();
             this.helloLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // newOrderBut
             // 
-            this.newOrderBut.Location = new System.Drawing.Point(77, 338);
+            this.newOrderBut.Location = new System.Drawing.Point(172, 338);
             this.newOrderBut.Name = "newOrderBut";
             this.newOrderBut.Size = new System.Drawing.Size(133, 56);
             this.newOrderBut.TabIndex = 0;
             this.newOrderBut.Text = "New Order";
             this.newOrderBut.UseVisualStyleBackColor = true;
-            // 
-            // allOrder
-            // 
-            this.allOrder.Location = new System.Drawing.Point(328, 338);
-            this.allOrder.Name = "allOrder";
-            this.allOrder.Size = new System.Drawing.Size(132, 55);
-            this.allOrder.TabIndex = 1;
-            this.allOrder.Text = "All Order";
-            this.allOrder.UseVisualStyleBackColor = true;
+            this.newOrderBut.Click += new System.EventHandler(this.newOrderBut_Click);
             // 
             // historyButt
             // 
-            this.historyButt.Location = new System.Drawing.Point(585, 338);
+            this.historyButt.Location = new System.Drawing.Point(482, 338);
             this.historyButt.Name = "historyButt";
             this.historyButt.Size = new System.Drawing.Size(133, 56);
             this.historyButt.TabIndex = 2;
@@ -78,10 +69,10 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.helloLabel);
             this.Controls.Add(this.historyButt);
-            this.Controls.Add(this.allOrder);
             this.Controls.Add(this.newOrderBut);
             this.Name = "Main";
             this.Text = "Main Menu";
+            this.Load += new System.EventHandler(this.Main_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -90,7 +81,6 @@
         #endregion
 
         private System.Windows.Forms.Button newOrderBut;
-        private System.Windows.Forms.Button allOrder;
         private System.Windows.Forms.Button historyButt;
         private System.Windows.Forms.Label helloLabel;
     }

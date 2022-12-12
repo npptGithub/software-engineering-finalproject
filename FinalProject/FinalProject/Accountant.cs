@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security.Cryptography.X509Certificates;
 
 public class Accountant
 {
@@ -7,5 +8,14 @@ public class Accountant
 	{
 		this.id = id;
 		this.username = username;
+	}
+	public string Id { 
+		get { return id; }
+		set { id = value; }
+	}
+	public string name
+	{
+		get { return username; }
+		set { username = value; }
 	}
 }

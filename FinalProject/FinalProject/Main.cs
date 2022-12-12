@@ -12,9 +12,22 @@ namespace FinalProject
 {
     public partial class Main : Form
     {
+        Accountant user = LoginPage.user;
         public Main()
         {
             InitializeComponent();
         }
+
+        private void Main_Load(object sender, EventArgs e)
+        {
+            helloLabel.Text += user.name;
+        }
+
+        private void newOrderBut_Click(object sender, EventArgs e)
+        {
+            NewOrder newOrderPage = new NewOrder();
+            newOrderPage.Show();
+        }
+
     }
 }

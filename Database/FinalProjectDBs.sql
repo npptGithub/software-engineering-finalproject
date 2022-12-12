@@ -1,3 +1,4 @@
+
 drop database FinalProjectSE
 go
 create database FinalProjectSE
@@ -5,8 +6,7 @@ go
 use FinalProjectSE
 go
 CREATE TABLE [Accountant] (
-  [ID] INT IDENTITY,
-  [AccountId] AS 'A' + RIGHT('000000' + CAST(ID AS VARCHAR(10)), 6) PERSISTED PRIMARY KEY,
+  [id] varchar(10) PRIMARY KEY,
   [name] varchar(50),
   [numPhone] varchar(10),
   [email] varchar(50),
@@ -15,8 +15,17 @@ CREATE TABLE [Accountant] (
 )
 GO
 
+CREATE TABLE [Address] (
+  [id] varchar(50) PRIMARY KEY,
+  [street] varchar(10),
+  [commune] varchar(10),
+  [district] varchar(10),
+  [city] varchar(10)
+)
+GO
+
 CREATE TABLE [ReceiveNote] (
-  [ID] INT IDENTITY PRIMARY KEY,
+  [id] varchar(10) PRIMARY KEY,
   [creator] varchar(50),
   [creatDay] varchar(8),
   [accountantID] varchar(10)
@@ -24,7 +33,7 @@ CREATE TABLE [ReceiveNote] (
 GO
 
 CREATE TABLE [DeliveryNote] (
-  [ID] INT IDENTITY PRIMARY KEY,
+  [id] varchar(10) PRIMARY KEY,
   [creator] varchar(50),
   [creatDay] varchar(8),
   [deliverStatus] int,
@@ -34,48 +43,46 @@ CREATE TABLE [DeliveryNote] (
 GO
 
 CREATE TABLE [ProductInstance] (
-  [id] int IDENTITY PRIMARY KEY,
+  [id] varchar(10) PRIMARY KEY,
   [name] varchar(50),
   [price] float,
   [quantity] int,
   [totalPrice] float,
-  [cartID] varchar(10),
+  [cardID] varchar(10),
   [productID] varchar(10)
 )
 GO
 
 CREATE TABLE [ListOfProduct] (
-  [ID] int IDENTITY PRIMARY KEY,
+  [ID] varchar(10) PRIMARY KEY,
   [prodInsID] varchar(10),
   [quantity] int,
   [totalPrice] float,
-  [noteID] int
+  [noteID] varchar(10)
 )
 GO
 
 CREATE TABLE [Product] (
-  [ID] INT IDENTITY,
-  [ProductId] AS 'P' + RIGHT('000000' + CAST(ID AS VARCHAR(10)), 6) PERSISTED PRIMARY KEY,
-  [supplierID] int,
+  [id] varchar(10) PRIMARY KEY,
+  [supplierID] varchar(10),
   [price] float,
   [genre] varchar(20)
 )
 GO
 
 CREATE TABLE [Genre] (
-  [type] varchar(20) primary key
+  [type] varchar(20) PRIMARY KEY
 )
 GO
 
 CREATE TABLE [Supplier] (
-  [id] int identity PRIMARY KEY,
+  [id] varchar(10) PRIMARY KEY,
   [supName] varchar(50)
 )
 GO
 
 CREATE TABLE [Customer] (
-  [ID] INT IDENTITY,
-  [CustomerId] AS 'C' + RIGHT('000000' + CAST(ID AS VARCHAR(10)), 6) PERSISTED PRIMARY KEY,
+  [id] varchar(10) PRIMARY KEY,
   [name] varchar(50),
   [numPhone] varchar(10),
   [email] varchar(50),
@@ -85,8 +92,7 @@ CREATE TABLE [Customer] (
 GO
 
 CREATE TABLE [Order] (
-  [ID] INT IDENTITY,
-  [OrderId] AS 'O' + RIGHT('000000' + CAST(ID AS VARCHAR(10)), 6) PERSISTED PRIMARY KEY,
+  [id] varchar(10) PRIMARY KEY,
   [orderDay] varchar(10),
   [status] int,
   [payMethod] varchar(10),
@@ -95,8 +101,7 @@ CREATE TABLE [Order] (
 GO
 
 CREATE TABLE [Cart] (
-  [ID] INT IDENTITY,
-  [CartId] AS 'CA' + RIGHT('000000' + CAST(ID AS VARCHAR(10)), 6) PERSISTED PRIMARY KEY,
+  [id] varchar(10) PRIMARY KEY,
   [numberOfItem] int,
   [totalPrice] float,
   [productName] varchar(50),
@@ -110,6 +115,12 @@ GO
 ALTER TABLE [Product] ADD FOREIGN KEY ([supplierID]) REFERENCES [Supplier] ([id])
 GO
 
+ALTER TABLE [Customer] ADD FOREIGN KEY ([address]) REFERENCES [Address] ([id])
+GO
+
+ALTER TABLE [Accountant] ADD FOREIGN KEY ([address]) REFERENCES [Address] ([id])
+GO
+
 ALTER TABLE [ListOfProduct] ADD FOREIGN KEY ([prodInsID]) REFERENCES [ProductInstance] ([id])
 GO
 
@@ -119,16 +130,16 @@ GO
 ALTER TABLE [Order] ADD FOREIGN KEY ([cusID]) REFERENCES [Customer] ([id])
 GO
 
-ALTER TABLE [Cart] ADD FOREIGN KEY ([orderID]) REFERENCES [Order] ([OrderId])
+ALTER TABLE [Cart] ADD FOREIGN KEY ([orderID]) REFERENCES [Order] ([id])
 GO
 
 ALTER TABLE [ProductInstance] ADD FOREIGN KEY ([productID]) REFERENCES [Product] ([id])
 GO
 
-ALTER TABLE [ReceiveNote] ADD FOREIGN KEY ([accountantID]) REFERENCES [Accountant] ([AccountId])
+ALTER TABLE [ReceiveNote] ADD FOREIGN KEY ([accountantID]) REFERENCES [Accountant] ([id])
 GO
 
-ALTER TABLE [DeliveryNote] ADD FOREIGN KEY ([id]) REFERENCES [Accountant] ([AccountId])
+ALTER TABLE [DeliveryNote] ADD FOREIGN KEY ([id]) REFERENCES [Accountant] ([id])
 GO
 
 ALTER TABLE [ListOfProduct] ADD FOREIGN KEY ([noteID]) REFERENCES [ReceiveNote] ([id])
@@ -137,5 +148,4 @@ GO
 ALTER TABLE [ListOfProduct] ADD FOREIGN KEY ([noteID]) REFERENCES [DeliveryNote] ([id])
 GO
 
-select * from [Order]
-select * from [Customer]
+select
