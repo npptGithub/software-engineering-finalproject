@@ -53,9 +53,11 @@ CREATE TABLE [ListOfProduct] (
 )
 GO
 
+
 CREATE TABLE [Product] (
   [ID] INT IDENTITY,
   [ProductId] AS 'P' + RIGHT('000000' + CAST(ID AS VARCHAR(10)), 6) PERSISTED PRIMARY KEY,
+  [prodName] varchar(50),
   [supplierID] int,
   [price] float,
   [genre] varchar(20)
@@ -139,3 +141,42 @@ GO
 
 select * from [Order]
 select * from [Customer]
+
+
+
+INSERT INTO tableName ("ID", AccountId, name, numPhone, email, age, address) VALUES
+	('A001', '', 'Sarah', '0855065019', 'sarah@email.com', '23', 'Tan Quy, D7, HCM'),
+	('A002', '', 'Joe', '08550123852', 'joe@email.com', '24', 'Tan Phong, D7, HCM');
+
+	INSERT INTO tableName (id, supName) VALUES
+	('Sup001', 'Hoang Phuc'),
+	('Sup002', 'JOMI');
+
+	INSERT INTO tableName ("ID", OrderId, orderDay, status, payMethod, cusID) VALUES
+	('O001', '', '12-Dec', '', 'Momo', 'C001'),
+	('O002', '', '12-Dec', '', 'Cash', 'C001'),
+	('O003', '', '12-Dec', '', 'Zalo', 'C001'),
+	('O004', '', '12-Dec', '', 'Momo', 'C002'),
+	('O005', '', '12-Dec', '', 'Credit', 'C002');
+
+	INSERT INTO tableName (type) VALUES
+	('Hair'),
+	('Skin'),
+	('Face'),
+	('Health');
+
+	INSERT INTO tableName ("ID", CustomerId, name, numPhone, email, age, address) VALUES
+	('C001', '', 'cus1', '01204806732', 'cus1@email.com', '21', 'Tan Hung, D7, HCM'),
+	('C002', '', 'cus2', '01204806787', 'cus2@email.com', '22', 'Tan Thuan Tay, D7, HCM'),
+	('AG001', '', 'agent1', '01204806785', 'agent1@email.com', '0', 'Tan Thuan Dong, D7, HCM'),
+	('AG002', '', 'agent2', '01204803214', 'agent2@email.com', '0', 'Tan Phu, D7, HCM');
+
+	INSERT INTO tableName ("ID", ProductId, prodName, supplierID, price, genre) VALUES
+	('H001', '', 'Clear', 'Hoang Phuc', '200000', 'Hair'),
+	('H002', '', 'Cocoon', 'JOMI', '210000', 'Hair'),
+	('Hth001', '', 'Aojiru', 'JOMI', '300000', 'Health'),
+	('Hth002', '', 'Bonie', 'Hoang Phuc', '310000', 'Health'),
+	('S001', '', 'Acnacare', 'JOMI', '120000', 'Skin'),
+	('S002', '', 'Hauora', 'Hoang Phuc', '285000', 'Skin'),
+	('F001', '', 'Mask Acne', 'JOMI', '21000', 'Face'),
+	('F002', '', 'Jelly Mask', 'Hoang Phuc', '22000', 'Face');
