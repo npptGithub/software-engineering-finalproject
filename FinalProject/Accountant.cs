@@ -3,8 +3,8 @@
 public class Accountant
 {
 	string id;
-	public Accountant()
+	public Accountant(string id)
 	{
-		
+		this.id = id
 	}
 }
