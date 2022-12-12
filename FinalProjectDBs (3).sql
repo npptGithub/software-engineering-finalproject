@@ -1,3 +1,7 @@
+drop database FinalProjectSE
+create database FinalProjectSE
+use master
+use FinalProjectSE
 CREATE TABLE [Accountant] (
   [id] varchar(10) PRIMARY KEY,
   [name] varchar(50),
@@ -5,13 +9,6 @@ CREATE TABLE [Accountant] (
   [email] varchar(50),
   [age] int,
   [address] varchar(50)
-)
-GO
-
-CREATE TABLE [LoginAccount] (
-  [id] varchar(10) PRIMARY KEY,
-  [userName] varchar(20),
-  [password] varchar(8)
 )
 GO
 
@@ -36,8 +33,8 @@ CREATE TABLE [DeliveryNote] (
   [id] varchar(10) PRIMARY KEY,
   [creator] varchar(50),
   [creatDay] varchar(8),
-  [deliverStatus] varchar(10),
-  [payStatus] varchar(10),
+  [deliverStatus] int,
+  [payStatus] int,
   [accountantID] varchar(10)
 )
 GO
@@ -94,7 +91,7 @@ GO
 CREATE TABLE [Order] (
   [id] varchar(10) PRIMARY KEY,
   [orderDay] varchar(10),
-  [status] varchar(10),
+  [status] int,
   [payMethod] varchar(10),
   [cusID] varchar(10)
 )
@@ -119,9 +116,6 @@ ALTER TABLE [Customer] ADD FOREIGN KEY ([address]) REFERENCES [Address] ([id])
 GO
 
 ALTER TABLE [Accountant] ADD FOREIGN KEY ([address]) REFERENCES [Address] ([id])
-GO
-
-ALTER TABLE [Accountant] ADD FOREIGN KEY ([id]) REFERENCES [LoginAccount] ([id])
 GO
 
 ALTER TABLE [ListOfProduct] ADD FOREIGN KEY ([prodInsID]) REFERENCES [ProductInstance] ([id])
