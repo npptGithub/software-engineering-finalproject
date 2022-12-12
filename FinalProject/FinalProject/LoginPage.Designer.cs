@@ -38,60 +38,66 @@
             // usernamelb
             // 
             this.usernamelb.AutoSize = true;
-            this.usernamelb.Location = new System.Drawing.Point(87, 122);
+            this.usernamelb.Location = new System.Drawing.Point(116, 150);
+            this.usernamelb.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.usernamelb.Name = "usernamelb";
-            this.usernamelb.Size = new System.Drawing.Size(61, 13);
+            this.usernamelb.Size = new System.Drawing.Size(76, 16);
             this.usernamelb.TabIndex = 0;
             this.usernamelb.Text = "Username :";
             // 
             // passwordlb
             // 
             this.passwordlb.AutoSize = true;
-            this.passwordlb.Location = new System.Drawing.Point(87, 175);
+            this.passwordlb.Location = new System.Drawing.Point(116, 215);
+            this.passwordlb.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.passwordlb.Name = "passwordlb";
-            this.passwordlb.Size = new System.Drawing.Size(59, 13);
+            this.passwordlb.Size = new System.Drawing.Size(73, 16);
             this.passwordlb.TabIndex = 1;
             this.passwordlb.Text = "Password :";
             // 
             // usernametb
             // 
-            this.usernametb.Location = new System.Drawing.Point(148, 119);
+            this.usernametb.Location = new System.Drawing.Point(197, 146);
+            this.usernametb.Margin = new System.Windows.Forms.Padding(4);
             this.usernametb.MaxLength = 16;
             this.usernametb.Name = "usernametb";
-            this.usernametb.Size = new System.Drawing.Size(188, 20);
+            this.usernametb.Size = new System.Drawing.Size(249, 22);
             this.usernametb.TabIndex = 2;
             // 
             // passwordtb
             // 
-            this.passwordtb.Location = new System.Drawing.Point(148, 172);
+            this.passwordtb.Location = new System.Drawing.Point(197, 212);
+            this.passwordtb.Margin = new System.Windows.Forms.Padding(4);
             this.passwordtb.MaxLength = 16;
             this.passwordtb.Name = "passwordtb";
             this.passwordtb.PasswordChar = '*';
-            this.passwordtb.Size = new System.Drawing.Size(188, 20);
+            this.passwordtb.Size = new System.Drawing.Size(249, 22);
             this.passwordtb.TabIndex = 3;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(148, 265);
+            this.button1.Location = new System.Drawing.Point(197, 316);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(122, 40);
+            this.button1.Size = new System.Drawing.Size(163, 49);
             this.button1.TabIndex = 4;
             this.button1.Text = "Login";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // Form1
+            // LoginPage
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(455, 382);
+            this.ClientSize = new System.Drawing.Size(595, 470);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.passwordtb);
             this.Controls.Add(this.usernametb);
             this.Controls.Add(this.passwordlb);
             this.Controls.Add(this.usernamelb);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Name = "LoginPage";
+            this.Text = "Login";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

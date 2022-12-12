@@ -1,3 +1,6 @@
+create database Software;
+Go
+use Software;
 CREATE TABLE [Accountant] (
   [id] varchar(10) PRIMARY KEY
 )

@@ -8,12 +8,15 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 using System.Windows.Forms;
 
 namespace FinalProject
 {
+    
     public partial class LoginPage : Form
-    {
+    {   
+        public static Accountant user;
         String strConn = ConfigurationManager.ConnectionStrings["ConnStr1"].ConnectionString;
         SqlConnection conn;
         public LoginPage()
@@ -40,7 +43,9 @@ namespace FinalProject
                 if (dt.Rows.Count > 0)
                 {
                     this.Visible = false;
-
+                    user = new Accountant(dt.Rows[0]["id"].ToString(), dt.Rows[0]["username"].ToString());
+                    Main mainMenu = new Main();
+                    mainMenu.Show();
                 }
                 else MessageBox.Show("Error", "Wrong username or password");
 
