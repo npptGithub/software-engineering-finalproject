@@ -38,6 +38,7 @@
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.noteType = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.customerData)).BeginInit();
             this.SuspendLayout();
             // 
@@ -54,7 +55,7 @@
             // customlb
             // 
             this.customlb.AutoSize = true;
-            this.customlb.Location = new System.Drawing.Point(224, 131);
+            this.customlb.Location = new System.Drawing.Point(196, 131);
             this.customlb.Name = "customlb";
             this.customlb.Size = new System.Drawing.Size(64, 16);
             this.customlb.TabIndex = 1;
@@ -98,7 +99,7 @@
             // 
             // customer
             // 
-            this.customer.Location = new System.Drawing.Point(325, 131);
+            this.customer.Location = new System.Drawing.Point(297, 131);
             this.customer.Name = "customer";
             this.customer.Size = new System.Drawing.Size(179, 22);
             this.customer.TabIndex = 6;
@@ -140,11 +141,23 @@
             this.radioButton3.UseVisualStyleBackColor = true;
             this.radioButton3.CheckedChanged += new System.EventHandler(this.radioButton3_CheckedChanged);
             // 
+            // noteType
+            // 
+            this.noteType.FormattingEnabled = true;
+            this.noteType.Items.AddRange(new object[] {
+            "Recieve Note",
+            "Delivery Note"});
+            this.noteType.Location = new System.Drawing.Point(91, 70);
+            this.noteType.Name = "noteType";
+            this.noteType.Size = new System.Drawing.Size(121, 24);
+            this.noteType.TabIndex = 10;
+            // 
             // NewOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.noteType);
             this.Controls.Add(this.radioButton3);
             this.Controls.Add(this.radioButton2);
             this.Controls.Add(this.radioButton1);
@@ -176,5 +189,6 @@
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton radioButton3;
+        private System.Windows.Forms.ComboBox noteType;
     }
 }

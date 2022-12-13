@@ -1,0 +1,1 @@
+INSERT INTO Accountant VALUES ('sceddd', '123456');

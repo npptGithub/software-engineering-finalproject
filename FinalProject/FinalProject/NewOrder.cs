@@ -45,24 +45,24 @@ namespace FinalProject
 
         private void parseDataSQL()
         {
-            String last , first , dataSQL,table="";
+            String last , first , dataSQL;
             last = dateTimePicker1.Value.Year + "/" + dateTimePicker1.Value.Month + "/" + dateTimePicker1.Value.Day;
             first = lastDatePicker.Value.Year + "/" + lastDatePicker.Value.Month + "/" + lastDatePicker.Value.Day;
             switch (status)
             {
                 case 0:
                     {
-                        table = "Order";
+
                         break;
                     }
                 case 1:
                     {
-                        table = "";
+
                         break;
                     }
                 case 2:
                     {
-                        table = "";
+
                         break;
                     }
                 
@@ -70,7 +70,7 @@ namespace FinalProject
             if (customer.Text.Length==0)
                 dataSQL = "select * from Order where (exportDay) between '" + first + "' and '" + last + "')";
             else
-                dataSQL = "select * from Order where cusID in (select name from Customer where name = '"+ customer.Text + "' and(exportDay) between '" + first + "' and '" + last + "')";
+                dataSQL = "select * from DeliveryNote where cusID in (select name from Customer where name = '"+ customer.Text + "' and(exportDay) between '" + first + "' and '" + last + "')";
             SqlCommand cmd = new SqlCommand(dataSQL, conn);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
