@@ -7,8 +7,8 @@ go
 use FinalProjectSE
 go
 CREATE TABLE [Accountant] (
-  [ID] INT IDENTITY PRIMARY KEY,
-  [AccountId] AS 'A' + RIGHT('000000' + CAST(ID AS VARCHAR(10)), 6) PERSISTED, -- A0000001
+  [ID] INT IDENTITY,
+  [AccountId] AS 'A' + RIGHT('000000' + CAST(ID AS VARCHAR(10)), 6) PERSISTED PRIMARY KEY, -- A0000001
   [name] varchar(50),
   [numPhone] varchar(10),
   [email] varchar(50),
@@ -18,8 +18,8 @@ CREATE TABLE [Accountant] (
 GO
 
 CREATE TABLE [ReceiveNote] (
-  [ID] INT IDENTITY PRIMARY KEY,
-  [ReceiveID] AS 'RN' + RIGHT('000000' + CAST(ID AS VARCHAR(10)), 6) PERSISTED, -- RN000001
+  [ID] INT IDENTITY,
+  [ReceiveID] AS 'RN' + RIGHT('000000' + CAST(ID AS VARCHAR(10)), 6) PERSISTED PRIMARY KEY, -- RN000001
   [creator] varchar(50),
   [creatDay] date default getDate(),
   [accountantID] varchar(7)
@@ -27,8 +27,8 @@ CREATE TABLE [ReceiveNote] (
 GO
 
 CREATE TABLE [DeliveryNote] (
-  [ID] INT IDENTITY PRIMARY KEY,
-  [DeliveryID] AS 'DN' + RIGHT('000000' + CAST(ID AS VARCHAR(10)), 6) PERSISTED , -- DN000001
+  [ID] INT IDENTITY,
+  [DeliveryID] AS 'DN' + RIGHT('000000' + CAST(ID AS VARCHAR(10)), 6) PERSISTED PRIMARY KEY, -- DN000001
   [creator] varchar(50),
   [creatDay] date default getDate(),
   [deliverStatus] int,
@@ -44,8 +44,8 @@ CREATE TABLE [ProductInstance] (
   [price] float,
   [quantity] int,
   [totalPrice] float,
-  [cartID] INT,
-  [productID]  INT
+  [cartID] varchar(8),
+  [productID]  varchar(7)
 )
 GO
 
@@ -62,7 +62,7 @@ GO
 CREATE TABLE [Product] (
   [ID] INT IDENTITY,
   [ProductId] AS 'P' + RIGHT('000000' + CAST(ID AS VARCHAR(10)), 6) PERSISTED PRIMARY KEY,
-  [supplierID] varchar (7),
+  [supplierID] varchar(7),
   [price] float,
   [genre] varchar(20)
 )
@@ -82,7 +82,7 @@ CREATE TABLE [Supplier] (
 GO
 
 CREATE TABLE [Customer] (
-  [ID] INT IDENTITY, -- 1 2 3 4 5
+  [ID] INT IDENTITY, -- 1 2 3 4 
   [CustomerId] AS 'C' + RIGHT('000000' + CAST(ID AS VARCHAR(10)), 6) PERSISTED PRIMARY KEY, -- (C0000001)
   [name] varchar(50),
   [numPhone] varchar(10),
@@ -118,35 +118,39 @@ GO
 ALTER TABLE [Product] ADD FOREIGN KEY ([supplierID]) REFERENCES [Supplier] ([supplierID])
 GO
 
-ALTER TABLE [ListOfProduct] ADD FOREIGN KEY ([PPID]) REFERENCES [ProductInstance] ([PPID])
+ALTER TABLE [ListOfProduct] ADD FOREIGN KEY ([PPID]) REFERENCES [ProductInstance] ([PIID])
 GO
 
-ALTER TABLE [ProductInstance] ADD FOREIGN KEY ([cartID]) REFERENCES [Cart] ([Id])
+ALTER TABLE [ProductInstance] ADD FOREIGN KEY ([cartID]) REFERENCES [Cart] ([CartId])
 GO
 
-ALTER TABLE [Order] ADD FOREIGN KEY ([cusID]) REFERENCES [Customer] ([id])
+ALTER TABLE [Order] ADD FOREIGN KEY ([cusID]) REFERENCES [Customer] ([CustomerId])
 GO
 
-ALTER TABLE [Cart] ADD FOREIGN KEY ([orderID]) REFERENCES [Order] ([ID])
+ALTER TABLE [Cart] ADD FOREIGN KEY ([orderID]) REFERENCES [Order] ([OrderId])
 GO
 
-ALTER TABLE [ProductInstance] ADD FOREIGN KEY ([productID]) REFERENCES [Product] ([id])
+ALTER TABLE [ProductInstance] ADD FOREIGN KEY ([productID]) REFERENCES [Product] ([ProductId])
 GO
 
-ALTER TABLE [ReceiveNote] ADD FOREIGN KEY ([accountantID]) REFERENCES [Accountant] ([ID])
+ALTER TABLE [ReceiveNote] ADD FOREIGN KEY ([accountantID]) REFERENCES [Accountant] ([AccountId])
 GO
 
-ALTER TABLE [DeliveryNote] ADD FOREIGN KEY ([id]) REFERENCES [Accountant] ([ID])
+ALTER TABLE [DeliveryNote] ADD FOREIGN KEY ([accountantID]) REFERENCES [Accountant] ([AccountId])
 GO
 
-ALTER TABLE [ListOfProduct] ADD FOREIGN KEY ([noteID]) REFERENCES [ReceiveNote] ([id])
+ALTER TABLE [ListOfProduct] ADD FOREIGN KEY ([noteID]) REFERENCES [ReceiveNote] ([ReceiveID])
 GO
 
-ALTER TABLE [ListOfProduct] ADD FOREIGN KEY ([noteID]) REFERENCES [DeliveryNote] ([id])
+ALTER TABLE [ListOfProduct] ADD FOREIGN KEY ([noteID]) REFERENCES [DeliveryNote] ([DeliveryID])
 GO
 
 select * from [Order]
 select * from [Customer]
 select * from [ProductInstance]
 select * from [Accountant]
+select * from [Supplier]
+
 insert into Accountant(name,numPhone,email,age,address) values('Tuong','0911485802','abc@gmail.com',14,'phu my hung')
+insert into Accountant(name,numPhone,email,age,address) values('Toan','0911485852','ex1@gmail.com',12,'Tan Quy')
+insert into Accountant(name,numPhone,email,age,address) values('Thinh','0911485963','ex3@gmail.com',42,'Tan Phu')
